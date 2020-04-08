@@ -1,8 +1,11 @@
 import pika
 import sys
 import time
+import subprocess
 
 if __name__ == '__main__':
+
+    # subprocess = subprocess.call("./master.sh", shell=True)
 
     topic_name = 'topic_golive-renderer'
     routing_key = 'golive-renderer.command'
@@ -28,10 +31,10 @@ if __name__ == '__main__':
         exchange=topic_name, routing_key=routing_key, body=message_start)
     print(" [x] Sent %r:%r" % (routing_key, message_start))
 
-    time.sleep(3)  # Сон в 3 секунды
-
-    channel.basic_publish(
-        exchange=topic_name, routing_key=routing_key, body=message_stop)
-    print(" [x] Sent %r:%r" % (routing_key, message_stop))
+    # time.sleep(50)  # Сон в 3 секунды
+    #
+    # channel.basic_publish(
+    #     exchange=topic_name, routing_key=routing_key, body=message_stop)
+    # print(" [x] Sent %r:%r" % (routing_key, message_stop))
 
     connection.close()
